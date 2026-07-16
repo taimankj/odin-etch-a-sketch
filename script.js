@@ -12,3 +12,9 @@ for (let i = 0; i < 16 ** 2; i++) {
   newDiv.classList.add("container-child");
   container.appendChild(newDiv);
 }
+
+// event listener listens to mouse hover actions on div elements and changes the background-color when event fires (event bubbling makes this happen)
+container.addEventListener(
+  "mouseover",
+  (e) => (e.target.style["background-color"] = "black"),
+);
