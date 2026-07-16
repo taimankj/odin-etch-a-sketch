@@ -15,11 +15,11 @@ function createGrid(gridSize) {
 
   for (let i = 0; i < gridSize ** 2; i++) {
     let newDiv = document.createElement("div");
-    let newDivSize = Math.floor(960 / gridSize) + "px";
+    let divSize = 960 / gridSize;
+    let divFlexBasis = 100 / gridSize;
 
-    newDiv.style.width = newDivSize;
-    newDiv.style.height = newDivSize;
-    newDiv.style["flex"] = `0 0 ${newDivSize}`;
+    newDiv.style.height = divSize + "px";
+    newDiv.style["flex"] = `0 0 ${divFlexBasis}%`;
     newDiv.classList.add("container-child");
 
     container.appendChild(newDiv);
@@ -27,10 +27,12 @@ function createGrid(gridSize) {
 }
 
 // event listener listens to mouse hover actions on div elements and changes the background-color when event fires (event bubbling makes this happen)
-container.addEventListener(
-  "mouseover",
-  (e) => (e.target.style["background-color"] = "black"),
-);
+container.addEventListener("mouseover", (e) => {
+  if (e.target === container) {
+    return;
+  }
+  e.target.style["background-color"] = "black";
+});
 
 // event listener listens process input when button is clicked on
 // will check if input is 1-100 and is a number
